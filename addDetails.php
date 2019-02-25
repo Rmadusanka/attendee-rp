@@ -1,5 +1,10 @@
 <?php
-
+session_start();
+if (isset($_SESSION['attendee'])) {
+    $username = $_SESSION['attendee'];
+} else {
+    header('location:index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +18,8 @@
 </head>
 
 <body>
+    <a href="main.php">Home</a>
+    <a href="scripts/logout.php">Logout</a>
     <div>
         <h3>Create Branch</h3>
         <form action="addDetails.php" method="post">
