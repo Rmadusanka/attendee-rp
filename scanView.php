@@ -21,6 +21,20 @@
         scanner.addListener('scan', function(content) {
             alert(content);
             console.log(content);
+            $.ajax({
+                type: "POST",
+                data: {
+                    data: content
+                },
+                url: "./scripts/attendance.php",
+                success: function(data) {
+                    //data will contain the vote count echoed by the controller i.e.  
+                    console.log(data);
+                    //then append the result where ever you want like
+                    $("span#votes_number").html(data); //data will be containing the vote count which you have echoed from the controller
+
+                }
+            });
         });
         Instascan.Camera.getCameras().then(function(cameras) {
             if (cameras.length > 0) {
